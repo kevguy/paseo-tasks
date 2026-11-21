@@ -1,0 +1,8 @@
+{
+  "wrapper": "/home/example/Projects/Obsidian-Vault/claude_workspace/tools/claude-tools",
+  "vaultRoot": "/home/example/Projects/Obsidian-Vault",
+  "ledgerPath": "/home/example/Projects/Obsidian-Vault/claude_workspace/machines/example-host/logs/harness-run-ledger.jsonl",
+  "artifactRoots": ["/home/example/Projects/Obsidian-Vault/claude_workspace/machines/example-host/archives"],
+  "hostLabel": "example-host",
+  "pathDirectories": ["/home/example/go/bin"]
+}
