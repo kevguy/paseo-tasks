@@ -16,7 +16,7 @@ test("read commands always carry all three write guards", () => { assert.deepEqu
 test("list is bounded, filters with fixed arguments and fingerprints the observed records", async () => {
  const calls: string[][] = []; const raw = Array.from({length:201}, (_, i) => ({...task, id:`test-${i}`}));
  const result = await getList("in_progress", "Operator", { config, run: async args => { calls.push(args); return args[0] === "where" ? { database_path:"/private/beads.db" } : raw; } });
- assert.equal(result.available, true); assert.equal(result.limited, true); assert.equal(result.tasks.length, 200); assert.equal(result.source.revision, hash(JSON.stringify(raw))); assert.deepEqual(calls[1], ["list", "--sort", "priority", "--limit", "201", "--status", "in_progress"]);
+ assert.equal(result.available, true); assert.equal(result.limited, true); assert.equal(result.tasks.length, 200); assert.equal(result.source.revision, hash(JSON.stringify(raw))); assert.deepEqual(calls[1], ["list", "--id", "Operator", "--limit", "2", "--status", "in_progress"]); assert.deepEqual(calls[2], ["list", "--sort", "priority", "--limit", "201", "--status", "in_progress"]);
  assert.match(result.source.warnings.join(" "), /by priority/);
 });
 test("exact ID search reaches tasks outside the bounded priority list and respects status", async () => {
@@ -26,6 +26,19 @@ test("exact ID search reaches tasks outside the bounded priority list and respec
  assert.equal(result.available,true);assert.equal(result.tasks[0].id,task.id);assert.equal(result.limited,false);assert.deepEqual(calls[1],["list","--id",task.id,"--limit","2","--all"]);assert.equal(calls.length,2);
  calls.length=0;await getList("closed",task.id,options);assert.deepEqual(calls[1],["list","--id",task.id,"--limit","2","--status","closed"]);
  calls.length=0;await getList("active",task.id,options);assert.deepEqual(calls[1],["list","--id",task.id,"--limit","2"]);
+});
+test("exact ID search accepts valid IDs without hyphens outside the bounded list", async () => {
+ const exactTask = { ...task, id:"task_123", priority:4 };
+ const calls: string[][]=[];
+ const result = await getList("all", exactTask.id, { config, run: async args => {
+  calls.push(args);
+  if(args[0]==="where") return {database_path:"/private/beads.db"};
+  if(args.includes("--id")) return [exactTask];
+  throw Error("The capped list must not hide a valid exact ID");
+ } });
+ assert.equal(result.available,true);
+ assert.equal(result.tasks[0]?.id,exactTask.id);
+ assert.deepEqual(calls[1],["list","--id",exactTask.id,"--limit","2","--all"]);
 });
 test("hyphenated text and mismatched exact reads fall back to bounded search without exposing errors",async()=>{
  for(const mismatch of [false,true]) {

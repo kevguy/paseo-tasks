@@ -18,7 +18,7 @@ export async function getList(filter: string, search: string, overrides?: Option
     const queryText = search.trim();
     // Older Beads versions limit before applying custom sorting. An exact ID
     // must remain reachable even when it falls outside that bounded list.
-    if (queryText.includes("-") && taskId.safeParse(queryText).success) {
+    if (taskId.safeParse(queryText).success) {
       let exact: ReturnType<typeof records> | null = null;
       try {
         const found = records(await run(["list", "--id", queryText, "--limit", "2", ...statusArgs]));

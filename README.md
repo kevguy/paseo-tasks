@@ -1,8 +1,19 @@
 # Tasks & Handoffs for Paseo
 
-A private, portable panel for existing machine-level Beads tasks managed by `claude-tools`. It shows task status, ownership, priority, dependencies, notes, acceptance criteria, recorded session handoffs and explicitly linked harness history. Copy continuation context when you choose to resume a task. Preview permitted local text evidence without leaving Paseo.
+A portable panel for existing machine-level Beads tasks managed by `claude-tools`. It shows task status, ownership, priority, dependencies, notes, acceptance criteria, recorded session handoffs and explicitly linked harness history. Copy continuation context when you choose to resume a task. Preview permitted local text evidence without leaving Paseo.
 
 Each host reads its own task database. Installing the same package on a second host does not copy tasks, configuration, evidence or company context. There is no second database, agent launcher or task editor. Existing `claude-tools` commands remain the mutation interface.
+
+## Install from npm
+
+With Paseo 0.16.2 or later, install the exact published release on the host:
+
+```sh
+paseo plugin install npm:@kevlai22/paseo-tasks@0.1.5
+paseo plugin ls paseo-tasks
+```
+
+Keep the host online while Paseo downloads and prepares the package. Installing a plugin does not restart the daemon. Repeat on each host where you want to use it.
 
 ## Install on another host
 
