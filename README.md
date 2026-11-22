@@ -27,7 +27,7 @@ Each host reads its own task database. Installing the same package on a second h
 With Paseo 0.16.2 or later, install the exact published release on the host:
 
 ```sh
-paseo plugin install npm:@kevlai22/paseo-tasks@0.1.5
+paseo plugin install npm:@kevlai22/paseo-tasks@0.1.6
 paseo plugin ls paseo-tasks
 ```
 
