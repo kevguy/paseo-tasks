@@ -1,5 +1,23 @@
 # Tasks & Handoffs for Paseo
 
+See your Beads tasks, their latest session handoff and ready-to-paste continuation context in Paseo, on desktop or phone.
+
+```sh
+paseo plugin add npm:@kevlai22/paseo-tasks
+```
+
+On the Paseo plugin directory: [paseo.sh/plugins/kevguy/tasks](https://paseo.sh/plugins/kevguy/tasks)
+
+![Tasks & Handoffs in Paseo: a list of fictional in-progress, open and blocked tasks](docs/screenshots/tasks-list-desktop.png)
+
+<p>
+  <img src="docs/screenshots/tasks-list-mobile.png" width="300" alt="The same task list on a phone-sized screen">
+</p>
+
+<sub>Screenshots show the real plugin in Paseo with fictional tasks; see [docs/screenshots](docs/screenshots/README.md).</sub>
+
+## About
+
 A portable panel for existing machine-level Beads tasks managed by `claude-tools`. It shows task status, ownership, priority, dependencies, notes, acceptance criteria, recorded session handoffs and explicitly linked harness history. Copy continuation context when you choose to resume a task. Preview permitted local text evidence without leaving Paseo.
 
 Each host reads its own task database. Installing the same package on a second host does not copy tasks, configuration, evidence or company context. There is no second database, agent launcher or task editor. Existing `claude-tools` commands remain the mutation interface.
