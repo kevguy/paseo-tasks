@@ -35,7 +35,7 @@ Keep the host online while Paseo downloads and prepares the package. Installing 
 
 ## Install on another host
 
-Requirements: Paseo 0.12 or later with plugins enabled, Node 20 or later, Python 3 for the optional configuration helper, and a working local vault/`claude-tools` with Beads 0.48 or 0.49. Other Beads versions require a guarded compatibility check first.
+Requirements: a macOS or Linux host (Windows hosts aren't supported yet), Paseo 0.12 or later with plugins enabled, Node 20 or later, Python 3 for the optional configuration helper, and a working local vault/`claude-tools` with Beads 0.48 or 0.49. Other Beads versions require a guarded compatibility check first.
 
 1. Copy only the release `.tgz` to the host and verify its SHA-256 against the release receipt. Extract it into a persistent directory, for example `~/Projects/paseo-tasks/package`.
 2. On that host, run `python3 package/examples/configure.py`. This checks that host's existing wrapper and writes `~/.paseo-tasks/config.json` only if absent. It never creates, imports, repairs or migrates a task store. An existing config is preserved.
